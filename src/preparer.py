@@ -20,7 +20,7 @@ preparation_params = params["preparation"]
 # ============================================================
 
 df = pd.read_csv(
-    "data/transactions.csv"
+    "data/transactions_enrichies.csv"
 )
 
 

@@ -1,21 +1,5 @@
 schema: '2.0'
 stages:
-  generate:
-    cmd: python generate_data.py
-    deps:
-    - path: generate_data.py
-      hash: md5
-      md5: 1f2b0bbed9eaba56b338f3cb83830f90
-      size: 2601
-    params:
-      params.yaml:
-        data.n: 5000
-        data.seed: 7
-    outs:
-    - path: data/transactions.csv
-      hash: md5
-      md5: cf9f6f86c141e7df32c61715c493483f
-      size: 85902
   preparer:
     cmd: python src/preparer.py
     deps:
@@ -25,8 +9,8 @@ stages:
       size: 120404
     - path: src/preparer.py
       hash: md5
-      md5: 52ef7f86611256b57984ffd422dcd376
-      size: 1802
+      md5: 849341da8b2c2779797df7be4ffdfefe
+      size: 1804
     params:
       params.yaml:
         preparation.random_state: 42
@@ -53,14 +37,14 @@ stages:
       size: 707
     params:
       params.yaml:
-        entrainement.max_depth: 6
+        entrainement.max_depth: 12
         entrainement.n_estimators: 100
         entrainement.random_state: 42
     outs:
     - path: models/model.pkl
       hash: md5
-      md5: 3753ada48beda49d5165c1f8f0642cd0
-      size: 907321
+      md5: bb1c663fdcbb6b1de93f6fa57a08613a
+      size: 3947801
   evaluer:
     cmd: python src/evaluer.py
     deps:
@@ -70,8 +54,8 @@ stages:
       size: 24154
     - path: models/model.pkl
       hash: md5
-      md5: 3753ada48beda49d5165c1f8f0642cd0
-      size: 907321
+      md5: bb1c663fdcbb6b1de93f6fa57a08613a
+      size: 3947801
     - path: src/evaluer.py
       hash: md5
       md5: 3dce91e150ab9dec4ef0bdea54b07348
@@ -79,25 +63,9 @@ stages:
     outs:
     - path: reports/confusion.png
       hash: md5
-      md5: d9c3455b1a9c1cc1386fd8583ca1af1c
-      size: 14655
+      md5: 5b5ca56b9218fabb92239833efe6bf12
+      size: 14259
     - path: reports/metrics.json
       hash: md5
-      md5: dc9158a459d3261511f6638dc288eae9
+      md5: b67d48c57acca6776691811b2c24c7c8
       size: 65
-  ajouter_donnees:
-    cmd: python nouvelles_donnees.py
-    deps:
-    - path: data/transactions.csv
-      hash: md5
-      md5: cf9f6f86c141e7df32c61715c493483f
-      size: 85902
-    - path: nouvelles_donnees.py
-      hash: md5
-      md5: 2d2af675029b8a741414f848c7c2bb6e
-      size: 1482
-    outs:
-    - path: data/transactions_enrichies.csv
-      hash: md5
-      md5: ed3a72472f975230ea8e99161e7cd285
-      size: 120404
