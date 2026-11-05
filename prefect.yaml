@@ -1,0 +1,11 @@
+# Lancer prefect deploy depuis la racine du dépôt.
+# Prefect génère l'étape set_working_directory à partir de ce répertoire.
+deployments:
+  - name: hebdomadaire-pool
+    entrypoint: flow_mlops.py:reentrainement
+    work_pool:
+      name: pool-tp
+    schedules:
+      - cron: "0 6 * * 1"
+        timezone: Africa/Casablanca
+        active: true

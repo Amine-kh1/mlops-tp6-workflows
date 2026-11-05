@@ -6,4 +6,5 @@ numpy
 joblib
 PyYAML
 matplotlib
-dvc
+dvc>=3,<4
+prefect>=3,<4
